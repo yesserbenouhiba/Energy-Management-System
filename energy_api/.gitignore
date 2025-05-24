@@ -1,0 +1,7 @@
+# Virtual environment folders
+venv/
+
+# SQLite database file
+db.sqlite3
+
+
