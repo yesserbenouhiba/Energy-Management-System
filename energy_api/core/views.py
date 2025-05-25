@@ -6,46 +6,67 @@ from .models import *
 from .serializers import *
 from django.db import connection
 
+# ViewSet for managing Societe objects (e.g., companies)
 class SocieteViewSet(viewsets.ModelViewSet):
     queryset = Societe.objects.all()
     serializer_class = SocieteSerializer
 
+
+# ViewSet for managing Compte objects (e.g., accounts)
 class CompteViewSet(viewsets.ModelViewSet):
     queryset = Compte.objects.all()
     serializer_class = CompteSerializer
 
+
+# ViewSet for managing CompteurElec (electricity meters)
 class CompteurElecViewSet(viewsets.ModelViewSet):
     queryset = CompteurElec.objects.all()
     serializer_class = CompteurElecSerializer
+
+    # Enables search filtering by related Societe ID
     filter_backends = [filters.SearchFilter]
     search_fields = ['societe__id']
 
+
+# ViewSet for managing CompteurGaz (gas meters)
 class CompteurGazViewSet(viewsets.ModelViewSet):
     queryset = CompteurGaz.objects.all()
     serializer_class = CompteurGazSerializer
+
+    # Enables search filtering by related Societe ID
     filter_backends = [filters.SearchFilter]
     search_fields = ['societe__id']
 
+
+# ViewSet for managing DemandeCotation (quotation requests)
 class DemandeCotationViewSet(viewsets.ModelViewSet):
     queryset = DemandeCotation.objects.all()
+
+    # Enables search filtering by type and status fields
     filter_backends = [filters.SearchFilter]
     search_fields = ['type', 'status']
 
+    # Use different serializers for read and write operations
     def get_serializer_class(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
-            return DemandeCotationReadSerializer
-        return DemandeCotationWriteSerializer
+            return DemandeCotationReadSerializer  # For read operations
+        return DemandeCotationWriteSerializer     # For create/update operations
 
+
+# ViewSet for managing VentePro (professional sales/contracts)
 class VenteProViewSet(viewsets.ModelViewSet):
     queryset = VentePro.objects.all()
+
+    # Enables search filtering by fournisseur and status fields
     filter_backends = [filters.SearchFilter]
     search_fields = ['fournisseur', 'status']
 
+    # Use different serializers for read and write operations
     def get_serializer_class(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
-            return VenteProReadSerializer
-        return VenteProWriteSerializer
-
+            return VenteProReadSerializer  # For read operations
+        return VenteProWriteSerializer     # For create/update operations
+    
 
 #Showing key metrics (active contracts, pending quotations)
 @api_view(['GET'])

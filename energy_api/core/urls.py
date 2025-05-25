@@ -12,13 +12,16 @@ router.register(r'ventepro', VenteProViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+
     # URL for dashboard metrics: shows key figures like active contracts and pending quotations
     path('dashboard-metrics/', dashboard_metrics, name='dashboard-metrics'),
-    # URLs providing various statistics endpoints:
+
     # - /stats/quotations/ : Lists all quotation requests with detailed company and account info
-    # - /stats/sales/ : Shows sales statistics grouped by energy type and company
-    # - /stats/average-duration/ : Calculates average duration of active contracts by supplier
     path('stats/quotations/', quotation_requests_with_details, name='quotation-details'),
+
+    # - /stats/sales/ : Shows sales statistics grouped by energy type and company
     path('stats/sales/', sales_statistics, name='sales-statistics'),
+
+    # - /stats/average-duration/ : Calculates average duration of active contracts by supplier
     path('stats/average-duration/', average_contract_duration, name='average-contract-duration'),
 ]

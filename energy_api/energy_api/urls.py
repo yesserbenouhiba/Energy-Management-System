@@ -19,7 +19,13 @@ from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
+    # Django admin interface (default path to manage models, users, etc.)
     path('admin/', admin.site.urls),
+
+    # Include all API endpoints defined in the 'core' app under the '/api/' path
     path('api/', include('core.urls')),
+
+    # Endpoint to obtain an authentication token using Django REST framework's token authentication
     path('api-token-auth/', obtain_auth_token),
 ]
+
