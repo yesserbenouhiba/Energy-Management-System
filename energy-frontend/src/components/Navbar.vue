@@ -102,7 +102,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "../store/auth";
 

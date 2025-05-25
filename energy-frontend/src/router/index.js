@@ -12,7 +12,6 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/societes', component: SocieteList },
   { path: '/societes/:id', component: SocieteDetail },
-//   { path: '/societes', component: SocieteList },
   { path: '/quotations', component: QuotationManagement },
   { path: '/contracts', component: ContractManagement },
 ]
