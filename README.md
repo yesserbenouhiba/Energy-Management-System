@@ -339,10 +339,8 @@ GROUP BY
    - Currently uses simple token authentication
    - No token expiration mechanism implemented
    - Limited role-based access control
-   - Tokens are not stored securely
-   – currently not stored in HTTP-only cookies, leaving them vulnerable to XSS attacks
-
-Frontend routes are not protected – users can access pages without authentication
+   - Tokens are not stored securely – currently not stored in HTTP-only cookies, leaving them vulnerable to XSS attacks
+   - Frontend routes are not protected – users can access pages without authentication
 
 2. **Database**
    - SQLite used for development (not suitable for production scale)
