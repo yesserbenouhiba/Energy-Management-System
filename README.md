@@ -339,6 +339,10 @@ GROUP BY
    - Currently uses simple token authentication
    - No token expiration mechanism implemented
    - Limited role-based access control
+   - Tokens are not stored securely
+   – currently not stored in HTTP-only cookies, leaving them vulnerable to XSS attacks
+
+Frontend routes are not protected – users can access pages without authentication
 
 2. **Database**
    - SQLite used for development (not suitable for production scale)
@@ -355,6 +359,8 @@ GROUP BY
 
 1. **Security Enhancements**
    - Implement JWT tokens with expiration
+   - Store tokens in HTTP-only cookies to protect against XSS attacks
+   - Protect frontend routes based on authentication status
 
 2. **Feature Enhancements**
    - Advanced reporting and dashboard features
